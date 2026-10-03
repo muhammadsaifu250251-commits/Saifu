@@ -1,78 +1,270 @@
-body {
-    font-family: Arial, sans-serif;
-    background: #eef4ff;
-    margin: 0;
-    padding: 20px;
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Thai:wght@400;500;600;700&display=swap');
+
+/* =========================
+   Smart Electricity Calculator
+   Visual Identity
+   ========================= */
+
+:root {
+    --paper: #F6F1E8;
+    --ink: #24231F;
+    --green: #24513F;
+    --orange: #D97732;
+    --red: #B94A42;
+    --line: #CFC7B8;
+    --white: #FFFDF8;
 }
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "IBM Plex Sans Thai", sans-serif;
+    line-height: 1.6;
+}
+
+/* =========================
+   Main container
+   ========================= */
 
 .container {
-    max-width: 700px;
-    margin: auto;
+    width: min(100% - 32px, 720px);
+    margin: 0 auto;
+    padding: 32px 0 60px;
 }
 
-h1 {
-    text-align: center;
-    color: #1557c0;
+/* =========================
+   Header
+   ========================= */
+
+.container > h1 {
+    margin: 0;
+    padding-bottom: 18px;
+    border-bottom: 3px solid var(--ink);
+
+    font-size: clamp(28px, 8vw, 44px);
+    line-height: 1.15;
+    font-weight: 700;
+    letter-spacing: -1px;
 }
 
-.container > p {
-    text-align: center;
-    color: #666;
+.container > h1::after {
+    content: "ค่าไฟโดยประมาณ";
+    display: block;
+    margin-top: 8px;
+
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    color: var(--green);
 }
 
-.card {
-    background: white;
-    padding: 20px;
-    margin-top: 20px;
-    border-radius: 15px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-}
+/* =========================
+   Section
+   ========================= */
 
 h2 {
-    color: #1557c0;
+    margin: 34px 0 18px;
+    padding-bottom: 8px;
+
+    border-bottom: 1px solid var(--line);
+
+    font-size: 20px;
+    font-weight: 600;
 }
+
+/* =========================
+   Card
+   ========================= */
+
+.card {
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 20px;
+    margin-bottom: 18px;
+}
+
+/* =========================
+   Labels
+   ========================= */
 
 label {
     display: block;
-    margin-top: 12px;
-    margin-bottom: 5px;
+    margin-bottom: 7px;
+
+    font-size: 15px;
+    font-weight: 600;
 }
 
-input {
+/* =========================
+   Inputs
+   ========================= */
+
+input,
+select {
     width: 100%;
-    box-sizing: border-box;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
+    min-height: 50px;
+
+    padding: 10px 13px;
+
+    border: 1px solid #BDB5A7;
+    border-radius: 4px;
+
+    background: #FFFFFF;
+    color: var(--ink);
+
+    font-family: "IBM Plex Sans Thai", sans-serif;
+    font-size: 16px;
+
+    outline: none;
 }
+
+input:focus,
+select:focus {
+    border: 2px solid var(--green);
+}
+
+/* ตัวเลข เช่น วัตต์ / ชั่วโมง / ค่าไฟ */
+input[type="number"],
+input[type="time"],
+input[type="date"] {
+    font-family: "IBM Plex Mono", monospace;
+}
+
+/* =========================
+   ช่องกรอกค่าไฟ
+   ========================= */
+
+#rate {
+    border-left: 5px solid var(--orange);
+}
+
+/* =========================
+   ปุ่ม
+   ========================= */
 
 button {
     width: 100%;
-    margin-top: 20px;
-    padding: 12px;
+    min-height: 52px;
+
+    margin-top: 14px;
+    padding: 12px 18px;
+
     border: none;
-    border-radius: 8px;
-    background: #2563eb;
+    border-radius: 4px;
+
+    background: var(--green);
     color: white;
+
+    font-family: "IBM Plex Sans Thai", sans-serif;
     font-size: 16px;
+    font-weight: 600;
+
+    cursor: pointer;
 }
 
 button:hover {
-    background: #1d4ed8;
+    background: #183A2D;
 }
+
+button:active {
+    transform: translateY(1px);
+}
+
+/* =========================
+   Result
+   ========================= */
 
 .result {
-    text-align: center;
+    margin-top: 24px;
+    padding: 22px 20px;
+
+    border-top: 4px solid var(--orange);
+    border-bottom: 1px solid var(--line);
+
+    background: var(--white);
 }
+
+.result p {
+    margin: 7px 0;
+}
+
+/* ตัวเลขผลลัพธ์ = พระเอก */
 
 .result strong {
-    color: #1557c0;
-    font-size: 24px;
+    display: inline-block;
+
+    margin-left: 5px;
+
+    color: var(--green);
+
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 28px;
+    font-weight: 600;
 }
 
-.device {
-    background: #f4f7fb;
-    padding: 12px;
+/* =========================
+   รายการเครื่องใช้ไฟฟ้า
+   ========================= */
+
+#applianceList {
+    margin-top: 12px;
+}
+
+#applianceList .card {
+    margin-bottom: 10px;
+}
+
+/* =========================
+   Error
+   ========================= */
+
+.error {
     margin-top: 10px;
-    border-radius: 8px;
+    padding: 10px 12px;
+
+    border-left: 4px solid var(--red);
+
+    color: var(--red);
+    background: #FFF3F1;
+
+    font-size: 14px;
+}
+
+/* =========================
+   Success
+   ========================= */
+
+.success {
+    color: var(--green);
+}
+
+/* =========================
+   Responsive - มือถือ
+   ========================= */
+
+@media (max-width: 600px) {
+
+    .container {
+        width: min(100% - 24px, 720px);
+        padding-top: 22px;
+    }
+
+    .card {
+        padding: 16px;
+    }
+
+    h2 {
+        margin-top: 28px;
+    }
+
+    .result strong {
+        font-size: 25px;
+    }
 }
