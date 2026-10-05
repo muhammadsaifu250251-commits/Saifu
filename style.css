@@ -1,270 +1,1491 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Thai:wght@400;500;600;700&display=swap');
 
-/* =========================
-   Smart Electricity Calculator
-   Visual Identity
-   ========================= */
+
+/* ========================================
+   VARIABLES
+======================================== */
 
 :root {
+
     --paper: #F6F1E8;
-    --ink: #24231F;
-    --green: #24513F;
-    --orange: #D97732;
-    --red: #B94A42;
-    --line: #CFC7B8;
     --white: #FFFDF8;
+    --ink: #24231F;
+
+    --green: #24513F;
+    --green-dark: #183A2D;
+    --green-light: #EAF1EC;
+
+    --orange: #D97732;
+    --orange-light: #FFF0E4;
+
+    --red: #B94A42;
+    --red-light: #FFF1ED;
+
+    --line: #D8D0C2;
+    --muted: #77716A;
+
 }
+
+
+/* ========================================
+   DARK MODE
+======================================== */
+
+body.dark {
+
+    --paper: #171A18;
+    --white: #202521;
+    --ink: #F4F1EA;
+
+    --green: #6FA88D;
+    --green-dark: #4D8069;
+    --green-light: #26382F;
+
+    --orange: #E39455;
+    --orange-light: #3A2B20;
+
+    --red: #E07870;
+    --red-light: #3B2725;
+
+    --line: #3A403C;
+    --muted: #AAA7A0;
+
+}
+
+
+/* ========================================
+   RESET
+======================================== */
 
 * {
+
     box-sizing: border-box;
+
 }
+
+
+html {
+
+    scroll-behavior: smooth;
+
+}
+
 
 body {
+
     margin: 0;
+
     background: var(--paper);
+
     color: var(--ink);
-    font-family: "IBM Plex Sans Thai", sans-serif;
+
+    font-family:
+        "IBM Plex Sans Thai",
+        sans-serif;
+
     line-height: 1.6;
+
+    transition:
+        background .2s,
+        color .2s;
+
 }
 
-/* =========================
-   Main container
-   ========================= */
 
-.container {
-    width: min(100% - 32px, 720px);
-    margin: 0 auto;
-    padding: 32px 0 60px;
+button,
+input,
+select {
+
+    font: inherit;
+
 }
 
-/* =========================
-   Header
-   ========================= */
 
-.container > h1 {
+/* ========================================
+   APP
+======================================== */
+
+.app {
+
+    width:
+        min(
+            calc(100% - 28px),
+            700px
+        );
+
+    margin: auto;
+
+    padding:
+        24px 0 50px;
+
+}
+
+
+/* ========================================
+   HEADER
+======================================== */
+
+.header {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 20px;
+
+}
+
+
+.brand {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+}
+
+
+.brand-icon {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 46px;
+
+    height: 46px;
+
+    border-radius: 12px;
+
+    background: var(--green);
+
+    color: white;
+
+    font-size: 24px;
+
+}
+
+
+.brand h1 {
+
     margin: 0;
-    padding-bottom: 18px;
-    border-bottom: 3px solid var(--ink);
 
-    font-size: clamp(28px, 8vw, 44px);
-    line-height: 1.15;
-    font-weight: 700;
-    letter-spacing: -1px;
+    font-size: 24px;
+
+    line-height: 1.2;
+
 }
 
-.container > h1::after {
-    content: "ค่าไฟโดยประมาณ";
-    display: block;
-    margin-top: 8px;
 
-    font-family: "IBM Plex Mono", monospace;
+.brand p {
+
+    margin: 3px 0 0;
+
+    color: var(--muted);
+
     font-size: 13px;
-    font-weight: 500;
-    letter-spacing: 1px;
-    color: var(--green);
+
 }
 
-/* =========================
-   Section
-   ========================= */
 
-h2 {
-    margin: 34px 0 18px;
-    padding-bottom: 8px;
+.theme-button {
 
-    border-bottom: 1px solid var(--line);
+    width: 42px;
 
-    font-size: 20px;
-    font-weight: 600;
+    height: 42px;
+
+    border:
+        1px solid var(--line);
+
+    border-radius: 10px;
+
+    background: var(--white);
+
+    cursor: pointer;
+
 }
 
-/* =========================
-   Card
-   ========================= */
+
+/* ========================================
+   DASHBOARD
+======================================== */
+
+.dashboard {
+
+    margin-bottom: 16px;
+
+    padding: 20px;
+
+    border-radius: 14px;
+
+    background: var(--green);
+
+    color: white;
+
+    box-shadow:
+        0 8px 25px rgba(36,81,63,.12);
+
+}
+
+
+.dashboard-main span {
+
+    display: block;
+
+    opacity: .75;
+
+    font-size: 14px;
+
+}
+
+
+.dashboard-main strong {
+
+    display: block;
+
+    margin: 3px 0;
+
+    font-family:
+        "IBM Plex Mono",
+        monospace;
+
+    font-size: 40px;
+
+    line-height: 1.2;
+
+}
+
+
+.dashboard-main small {
+
+    opacity: .65;
+
+}
+
+
+.dashboard-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 8px;
+
+    margin-top: 18px;
+
+}
+
+
+.dashboard-box {
+
+    min-width: 0;
+
+    padding: 11px;
+
+    border:
+        1px solid rgba(255,255,255,.16);
+
+    border-radius: 9px;
+
+    background:
+        rgba(255,255,255,.08);
+
+}
+
+
+.dashboard-box span {
+
+    display: block;
+
+    opacity: .7;
+
+    font-size: 11px;
+
+}
+
+
+.dashboard-box strong {
+
+    display: block;
+
+    overflow: hidden;
+
+    font-family:
+        "IBM Plex Mono",
+        monospace;
+
+    font-size: 17px;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+
+}
+
+
+.dashboard-box small {
+
+    opacity: .6;
+
+    font-size: 10px;
+
+}
+
+
+/* ========================================
+   CARD
+======================================== */
 
 .card {
+
+    margin-bottom: 16px;
+
+    padding: 18px;
+
+    border:
+        1px solid var(--line);
+
+    border-radius: 11px;
+
     background: var(--white);
-    border: 1px solid var(--line);
-    border-radius: 6px;
-    padding: 20px;
-    margin-bottom: 18px;
+
+    transition:
+        background .2s,
+        border .2s;
+
 }
 
-/* =========================
-   Labels
-   ========================= */
+
+.section-heading {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: space-between;
+
+    margin-bottom: 15px;
+
+}
+
+
+.section-heading h2 {
+
+    margin: 0;
+
+    font-size: 18px;
+
+    line-height: 1.4;
+
+}
+
+
+.section-heading p {
+
+    margin: 3px 0 0;
+
+    color: var(--muted);
+
+    font-size: 12px;
+
+}
+
+
+/* ========================================
+   TARGET
+======================================== */
+
+.target-status {
+
+    margin-top: 10px;
+
+    padding: 10px 12px;
+
+    border-radius: 7px;
+
+    background: #F3EFE7;
+
+    color: var(--muted);
+
+    font-size: 13px;
+
+}
+
+
+body.dark .target-status {
+
+    background: #292D2A;
+
+}
+
+
+.target-status.success {
+
+    background: var(--green-light);
+
+    color: var(--green);
+
+}
+
+
+.target-status.danger {
+
+    background: var(--red-light);
+
+    color: var(--red);
+
+}
+
+
+/* ========================================
+   QUICK DEVICES
+======================================== */
+
+.popular-devices {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(5, 1fr);
+
+    gap: 7px;
+
+}
+
+
+.quick-device {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-height: 72px;
+
+    padding: 7px 3px;
+
+    border:
+        1px solid var(--line);
+
+    border-radius: 8px;
+
+    background:
+        var(--paper);
+
+    color: var(--ink);
+
+    cursor: pointer;
+
+    transition: .15s;
+
+}
+
+
+.quick-device:hover {
+
+    border-color: var(--green);
+
+    background:
+        var(--green-light);
+
+    transform:
+        translateY(-1px);
+
+}
+
+
+.device-emoji {
+
+    font-size: 22px;
+
+}
+
+
+.quick-device > span:last-child {
+
+    margin-top: 2px;
+
+    font-size: 11px;
+
+}
+
+
+/* ========================================
+   FORM
+======================================== */
+
+.form-divider {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin: 20px 0;
+
+    color: var(--muted);
+
+    font-size: 11px;
+
+}
+
+
+.form-divider::before,
+.form-divider::after {
+
+    content: "";
+
+    flex: 1;
+
+    height: 1px;
+
+    background: var(--line);
+
+}
+
 
 label {
-    display: block;
-    margin-bottom: 7px;
 
-    font-size: 15px;
+    display: block;
+
+    margin:
+        12px 0 6px;
+
+    font-size: 13px;
+
     font-weight: 600;
+
 }
 
-/* =========================
-   Inputs
-   ========================= */
 
 input,
 select {
+
     width: 100%;
-    min-height: 50px;
 
-    padding: 10px 13px;
+    min-height: 48px;
 
-    border: 1px solid #BDB5A7;
-    border-radius: 4px;
+    padding:
+        10px 12px;
 
-    background: #FFFFFF;
+    border:
+        1px solid #C8C0B3;
+
+    border-radius: 7px;
+
+    background: var(--white);
+
     color: var(--ink);
 
-    font-family: "IBM Plex Sans Thai", sans-serif;
-    font-size: 16px;
-
     outline: none;
+
 }
+
+
+body.dark input,
+body.dark select {
+
+    border-color: var(--line);
+
+}
+
 
 input:focus,
 select:focus {
-    border: 2px solid var(--green);
+
+    border:
+        2px solid var(--green);
+
 }
 
-/* ตัวเลข เช่น วัตต์ / ชั่วโมง / ค่าไฟ */
-input[type="number"],
-input[type="time"],
-input[type="date"] {
-    font-family: "IBM Plex Mono", monospace;
+
+.input-unit {
+
+    position: relative;
+
 }
 
-/* =========================
-   ช่องกรอกค่าไฟ
-   ========================= */
 
-#rate {
-    border-left: 5px solid var(--orange);
+.input-unit input {
+
+    padding-right: 65px;
+
 }
 
-/* =========================
-   ปุ่ม
-   ========================= */
 
-button {
+.input-unit span {
+
+    position: absolute;
+
+    top: 50%;
+
+    right: 14px;
+
+    transform:
+        translateY(-50%);
+
+    color: var(--muted);
+
+    font-size: 12px;
+
+}
+
+
+/* ========================================
+   BUTTONS
+======================================== */
+
+.primary-button,
+.secondary-button {
+
     width: 100%;
-    min-height: 52px;
 
-    margin-top: 14px;
-    padding: 12px 18px;
+    min-height: 50px;
 
     border: none;
-    border-radius: 4px;
 
-    background: var(--green);
-    color: white;
-
-    font-family: "IBM Plex Sans Thai", sans-serif;
-    font-size: 16px;
-    font-weight: 600;
+    border-radius: 8px;
 
     cursor: pointer;
-}
 
-button:hover {
-    background: #183A2D;
-}
-
-button:active {
-    transform: translateY(1px);
-}
-
-/* =========================
-   Result
-   ========================= */
-
-.result {
-    margin-top: 24px;
-    padding: 22px 20px;
-
-    border-top: 4px solid var(--orange);
-    border-bottom: 1px solid var(--line);
-
-    background: var(--white);
-}
-
-.result p {
-    margin: 7px 0;
-}
-
-/* ตัวเลขผลลัพธ์ = พระเอก */
-
-.result strong {
-    display: inline-block;
-
-    margin-left: 5px;
-
-    color: var(--green);
-
-    font-family: "IBM Plex Mono", monospace;
-    font-size: 28px;
     font-weight: 600;
+
 }
 
-/* =========================
-   รายการเครื่องใช้ไฟฟ้า
-   ========================= */
 
-#applianceList {
-    margin-top: 12px;
+.primary-button {
+
+    margin-top: 18px;
+
+    background: var(--green);
+
+    color: white;
+
 }
 
-#applianceList .card {
-    margin-bottom: 10px;
+
+.primary-button:hover {
+
+    background: var(--green-dark);
+
 }
 
-/* =========================
-   Error
-   ========================= */
 
-.error {
+.secondary-button {
+
     margin-top: 10px;
-    padding: 10px 12px;
 
-    border-left: 4px solid var(--red);
+    background: var(--orange);
+
+    color: white;
+
+}
+
+
+.secondary-button:hover {
+
+    opacity: .9;
+
+}
+
+
+/* ========================================
+   EMPTY
+======================================== */
+
+.empty-state {
+
+    padding: 28px 10px;
+
+    text-align: center;
+
+    color: var(--muted);
+
+}
+
+
+.empty-icon {
+
+    margin-bottom: 5px;
+
+    font-size: 32px;
+
+}
+
+
+.empty-state strong {
+
+    display: block;
+
+    color: var(--ink);
+
+}
+
+
+.empty-state p {
+
+    margin: 3px 0;
+
+    font-size: 12px;
+
+}
+
+
+/* ========================================
+   DEVICE
+======================================== */
+
+.device {
+
+    margin-bottom: 10px;
+
+    padding: 14px;
+
+    border:
+        1px solid var(--line);
+
+    border-radius: 8px;
+
+    background: var(--paper);
+
+}
+
+
+.device-top {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+}
+
+
+.device-name strong {
+
+    display: block;
+
+    font-size: 16px;
+
+}
+
+
+.device-name span {
+
+    color: var(--muted);
+
+    font-family:
+        "IBM Plex Mono",
+        monospace;
+
+    font-size: 11px;
+
+}
+
+
+.delete-button {
+
+    width: 30px;
+
+    height: 30px;
+
+    padding: 0;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: var(--red-light);
 
     color: var(--red);
-    background: #FFF3F1;
 
-    font-size: 14px;
+    font-size: 19px;
+
+    cursor: pointer;
+
 }
 
-/* =========================
-   Success
-   ========================= */
 
-.success {
+.edit-button {
+
+    min-height: 30px;
+
+    padding:
+        3px 9px;
+
+    border:
+        1px solid var(--line);
+
+    border-radius: 6px;
+
+    background: var(--white);
+
     color: var(--green);
+
+    cursor: pointer;
+
+    font-size: 11px;
+
 }
 
-/* =========================
-   Responsive - มือถือ
-   ========================= */
+
+.device-actions {
+
+    display: flex;
+
+    gap: 5px;
+
+}
+
+
+.device-details {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 12px;
+
+    margin-top: 8px;
+
+    color: var(--muted);
+
+    font-size: 11px;
+
+}
+
+
+.device-cost {
+
+    display: flex;
+
+    align-items: baseline;
+
+    justify-content: space-between;
+
+    gap: 10px;
+
+    margin-top: 10px;
+
+}
+
+
+.device-cost strong {
+
+    color: var(--green);
+
+    font-family:
+        "IBM Plex Mono",
+        monospace;
+
+    font-size: 19px;
+
+}
+
+
+.device-cost span {
+
+    color: var(--muted);
+
+    font-size: 10px;
+
+}
+
+
+.progress {
+
+    height: 5px;
+
+    margin-top: 10px;
+
+    overflow: hidden;
+
+    border-radius: 10px;
+
+    background: #E4DED3;
+
+}
+
+
+body.dark .progress {
+
+    background: #343A36;
+
+}
+
+
+.progress div {
+
+    height: 100%;
+
+    border-radius: 10px;
+
+    background: var(--green);
+
+}
+
+
+/* ========================================
+   CHART
+======================================== */
+
+.chart-row {
+
+    margin-bottom: 15px;
+
+}
+
+
+.chart-label {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 5px;
+
+    font-size: 12px;
+
+}
+
+
+.chart-label strong {
+
+    color: var(--green);
+
+    font-family:
+        "IBM Plex Mono",
+        monospace;
+
+}
+
+
+.chart-bar {
+
+    height: 9px;
+
+    overflow: hidden;
+
+    border-radius: 10px;
+
+    background: #E6E0D6;
+
+}
+
+
+body.dark .chart-bar {
+
+    background: #343A36;
+
+}
+
+
+.chart-bar div {
+
+    height: 100%;
+
+    border-radius: 10px;
+
+    background: var(--green);
+
+}
+
+
+/* ========================================
+   RANKING
+======================================== */
+
+.ranking-item {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 11px 0;
+
+    border-bottom:
+        1px solid var(--line);
+
+}
+
+
+.ranking-item:last-child {
+
+    border-bottom: none;
+
+}
+
+
+.rank {
+
+    display: flex;
+
+    flex: 0 0 30px;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 30px;
+
+    height: 30px;
+
+    border-radius: 50%;
+
+    background: var(--green-light);
+
+    color: var(--green);
+
+    font-weight: 700;
+
+}
+
+
+.ranking-info {
+
+    flex: 1;
+
+    min-width: 0;
+
+}
+
+
+.ranking-info strong {
+
+    display: block;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+
+}
+
+
+.ranking-info small {
+
+    color: var(--muted);
+
+    font-size: 10px;
+
+}
+
+
+.ranking-cost {
+
+    color: var(--green);
+
+    font-family:
+        "IBM Plex Mono",
+        monospace;
+
+    font-size: 12px;
+
+}
+
+
+/* ========================================
+   ADVISOR
+======================================== */
+
+.advisor-card {
+
+    border-left:
+        4px solid var(--orange);
+
+}
+
+
+.advisor-header {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin-bottom: 14px;
+
+}
+
+
+.advisor-icon {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 42px;
+
+    height: 42px;
+
+    border-radius: 10px;
+
+    background: var(--orange-light);
+
+    font-size: 22px;
+
+}
+
+
+.advisor-header h2 {
+
+    margin: 0;
+
+    font-size: 17px;
+
+}
+
+
+.advisor-header p {
+
+    margin: 2px 0 0;
+
+    color: var(--muted);
+
+    font-size: 11px;
+
+}
+
+
+.advice-item {
+
+    margin-top: 8px;
+
+    padding: 11px;
+
+    border-radius: 7px;
+
+    background: var(--paper);
+
+    font-size: 12px;
+
+}
+
+
+.advice-item strong {
+
+    color: var(--green);
+
+}
+
+
+.advice-saving {
+
+    margin-top: 4px;
+
+    color: var(--orange);
+
+    font-family:
+        "IBM Plex Mono",
+        monospace;
+
+    font-size: 11px;
+
+}
+
+
+/* ========================================
+   SIMULATOR
+======================================== */
+
+.advanced-toggle {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    width: 100%;
+
+    padding: 0;
+
+    border: none;
+
+    background: transparent;
+
+    color: var(--green);
+
+    text-align: left;
+
+    cursor: pointer;
+
+    font-weight: 600;
+
+}
+
+
+.simulator {
+
+    margin-top: 16px;
+
+    padding-top: 16px;
+
+    border-top:
+        1px solid var(--line);
+
+}
+
+
+.simulator p {
+
+    margin-top: 0;
+
+    color: var(--muted);
+
+    font-size: 12px;
+
+}
+
+
+.saving-result {
+
+    margin-top: 15px;
+
+    padding: 16px;
+
+    border-radius: 8px;
+
+    background: var(--green-light);
+
+    text-align: center;
+
+}
+
+
+.saving-result span,
+.saving-result small {
+
+    display: block;
+
+    color: var(--muted);
+
+}
+
+
+.saving-result strong {
+
+    display: block;
+
+    margin: 4px 0;
+
+    color: var(--green);
+
+    font-family:
+        "IBM Plex Mono",
+        monospace;
+
+    font-size: 30px;
+
+}
+
+
+.saving-compare {
+
+    margin-top: 7px;
+
+    color: var(--muted);
+
+    font-family:
+        "IBM Plex Mono",
+        monospace;
+
+    font-size: 12px;
+
+}
+
+
+.warning {
+
+    margin-top: 15px;
+
+    padding: 11px;
+
+    border-radius: 7px;
+
+    background: var(--red-light);
+
+    color: var(--red);
+
+    font-size: 12px;
+
+}
+
+
+/* ========================================
+   RESET
+======================================== */
+
+.reset-button {
+
+    width: 100%;
+
+    padding: 13px;
+
+    border:
+        1px solid #D8C8C3;
+
+    border-radius: 8px;
+
+    background: transparent;
+
+    color: var(--red);
+
+    cursor: pointer;
+
+}
+
+
+.reset-button:hover {
+
+    background: var(--red-light);
+
+}
+
+
+/* ========================================
+   FOOTER
+======================================== */
+
+footer {
+
+    padding-top: 25px;
+
+    text-align: center;
+
+    color: var(--muted);
+
+}
+
+
+footer p {
+
+    margin: 0;
+
+    font-weight: 600;
+
+}
+
+
+footer span {
+
+    font-size: 10px;
+
+}
+
+
+/* ========================================
+   MOBILE
+======================================== */
 
 @media (max-width: 600px) {
 
-    .container {
-        width: min(100% - 24px, 720px);
-        padding-top: 22px;
+    .app {
+
+        width:
+            calc(100% - 20px);
+
+        padding-top: 18px;
+
     }
+
+
+    .dashboard-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+
+    .popular-devices {
+
+        gap: 4px;
+
+    }
+
+
+    .quick-device {
+
+        min-height: 65px;
+
+    }
+
+
+    .dashboard-main strong {
+
+        font-size: 36px;
+
+    }
+
 
     .card {
-        padding: 16px;
+
+        padding: 15px;
+
     }
 
-    h2 {
-        margin-top: 28px;
+}
+
+
+@media (max-width: 380px) {
+
+    .brand h1 {
+
+        font-size: 21px;
+
     }
 
-    .result strong {
-        font-size: 25px;
+
+    .brand p {
+
+        font-size: 11px;
+
     }
+
+
+    .dashboard-main strong {
+
+        font-size: 32px;
+
+    }
+
+
+    .quick-device > span:last-child {
+
+        font-size: 9px;
+
+    }
+
+
+    .device-cost {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 2px;
+
+    }
+
 }
